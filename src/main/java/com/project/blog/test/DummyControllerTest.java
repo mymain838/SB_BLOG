@@ -20,6 +20,18 @@ public class DummyControllerTest {
 
     @Autowired // 의존성 주입
     private UserRepository userRepository;
+
+    @PostMapping("/dummy/user/{id}")
+    //json 데이터 요청 => Java Object(MessageConverter의 Jackson 라이브러리가 변환 해서 받아줌
+    public User updateUser(@PathVariable int id, @RequestBody User requstUser){
+        System.out.println(id);
+        System.out.println(requstUser.getEmail());
+        System.out.println(requstUser.getPassword());
+
+        return null;
+    }
+
+
     @GetMapping("/dummy/users")
     public List<User> list(){
         List<User> user = userRepository.findAll();
