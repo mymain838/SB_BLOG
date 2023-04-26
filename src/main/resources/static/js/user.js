@@ -3,6 +3,9 @@ let index = {
         $("#btn-save").on("click", () => { //this를 바인딩하기 위해서!!
             this.save();
         });
+        $("#btn-login").on("click", () => { //this를 바인딩하기 위해서!!
+            this.login();
+        });
 
     },
 
@@ -17,7 +20,7 @@ let index = {
         //ajax호출 default가 비동기 호출
         $.ajax({
             type: "POST",
-            url: "/blog/api/user",
+            url: "/api/user",
             data: JSON.stringify(data), //http bodat 데이터
             contentType: "application/json; charset=utf-8",
             dataType:"json"
@@ -25,7 +28,7 @@ let index = {
 
             alert("회원가입이 완료되었습니다." + resp.data);
            console.log(resp);
-            location.href= "/blog";
+            location.href= "/";
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
@@ -41,7 +44,7 @@ let index = {
         //ajax호출 default가 비동기 호출
         $.ajax({
             type: "POST",
-            url: "/blog/api/user/login",
+            url: "/api/user/login",
             data: JSON.stringify(data), //http bodat 데이터
             contentType: "application/json; charset=utf-8",
             dataType:"json"
@@ -49,7 +52,7 @@ let index = {
 
             alert("로그인이 완료되었습니다." + resp.data);
             console.log(resp);
-            location.href= "/blog";
+            location.href= "/";
         }).fail(function (error){
             alert(JSON.stringify(error));
         });

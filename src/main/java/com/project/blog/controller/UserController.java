@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    @GetMapping("/user/joinForm")
+    @GetMapping("/joinForm")
     public String join(){
 
         return "user/joinForm";
 
 
     }
-    @GetMapping("/user/loginForm")
+    @GetMapping("/loginForm")
     public String login(){
 
         return "user/loginForm";
