@@ -3,9 +3,9 @@ let index = {
         $("#btn-save").on("click", () => { //this를 바인딩하기 위해서!!
             this.save();
         });
-        $("#btn-login").on("click", () => { //this를 바인딩하기 위해서!!
+       /* $("#btn-login").on("click", () => { //this를 바인딩하기 위해서!!
             this.login();
-        });
+        });*/
 
     },
 
@@ -20,7 +20,7 @@ let index = {
         //ajax호출 default가 비동기 호출
         $.ajax({
             type: "POST",
-            url: "/api/user",
+            url: "/auth/joinProc",
             data: JSON.stringify(data), //http bodat 데이터
             contentType: "application/json; charset=utf-8",
             dataType:"json"
@@ -32,8 +32,8 @@ let index = {
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
-    },
-    login: function () {
+    }
+   /* login: function () {
         // alert('user의 save함수 호출됌');
         let data = {
             username: $("#username").val(),
@@ -56,7 +56,7 @@ let index = {
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
-    }
+    }*/
 }
 
 index.init();
