@@ -21,15 +21,18 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    BCryptPasswordEncoder encode() {
+    public BCryptPasswordEncoder encoder() {
+
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws  Exception{
+
         http
+                .csrf().disable() // csrf 토큰 비활성화 (테스트시 걸어두는 게 좋음)
                 .authorizeRequests() // 요청이 들어오면
-                .antMatchers("/auth/**") //auth 밑에 있는 요청이면
+                .antMatchers("/","/auth/**","/js/**","/css/**","/image/**") //auth 밑에 있는 요청이면
                 .permitAll() // 따로 권한을 줘
                 .anyRequest() // 따로 권한을 주지않는 요청들은
                 .authenticated() // 인증을 해야해
