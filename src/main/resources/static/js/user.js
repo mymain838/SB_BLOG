@@ -32,7 +32,8 @@ let index = {
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
-    }
+    },
+    wri
    /* login: function () {
         // alert('user의 save함수 호출됌');
         let data = {

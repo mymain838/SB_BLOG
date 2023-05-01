@@ -10,8 +10,11 @@ public class BoardController {
 
     //@AuthenticationPrincipal PrincipalDetail principal
     @GetMapping({"","/"})
-    public String index(@AuthenticationPrincipal PrincipalDetail principal) {
-        System.out.println(principal.getUsername());
+    public String index() {
         return "index";
+    }
+    @GetMapping("/board/saveForm")
+    public String saveForm() {
+        return "board/saveForm";
     }
 }

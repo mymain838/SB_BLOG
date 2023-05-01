@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.DefaultHttpFirewall;
+import org.springframework.security.web.firewall.HttpFirewall;
 
 // 빈 등록 : 스프링 컨테
 @Configuration// 빈등록(Ioc관리)
@@ -56,6 +58,10 @@ public class SecurityConfig {
 
 
         return http.build();
+    }
+    @Bean
+    public HttpFirewall getHttpFirewall() {
+        return new DefaultHttpFirewall();
     }
   /*  public class MyCustomDsl extends AbstractHttpConfigurer<MyCustomDsl, HttpSecurity>{
         @Override

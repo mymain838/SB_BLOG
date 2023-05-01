@@ -27,7 +27,7 @@ public class Board {
     @Lob // 대용량데이터
     private String content;
 
-    @ColumnDefault("0")
+   // @ColumnDefault("0") 직접넣어줄거임
     private int count;
 
     @ManyToOne(fetch = FetchType.EAGER) // Many = Board , User = One
