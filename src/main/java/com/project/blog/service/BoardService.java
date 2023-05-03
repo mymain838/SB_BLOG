@@ -21,11 +21,15 @@ public class BoardService {
     public String 글쓰기(Board board, User user) {
         board.setUser(user);
         board.setCount(0);
-        boardRepository.save(board);
+            boardRepository.save(board);
         return "OK";
     }
-    public Page<Board> 글목록(Pageable pageable){
-
-        return boardRepository.findAll(pageable);
+    public Page<Board> 글목록(Pageable pageable, String keyword){
+        if(keyword ==null){
+            return  boardRepository.findAll(pageable);
+        }else{
+            return  boardRepository.findByTitleContaining(keyword, pageable);
+        }
     }
+
 }

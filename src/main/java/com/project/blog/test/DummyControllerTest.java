@@ -59,9 +59,9 @@ public class DummyControllerTest {
         return user;
     }
     @GetMapping("/dummy/user")
-    public List<User> pageList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC) Pageable pageable){
+    public Page<User> pageList(@PageableDefault(size=1, sort="id", direction = Sort.Direction.DESC) Pageable pageable){
         Page<User> pagingUser = userRepository.findAll(pageable);
-        List<User> users = pagingUser.getContent();
+        Page<User> users = pagingUser;
  /*       User user = pagingUser.getContent().stream().filter(p -> "coss".equals(p.getUsername()))
                .findFirst().orElseThrow(() -> new IllegalArgumentException("없다 그런거"));
         List<User> users = pagingUser.get().filter(user -> "love".equals(user.getUsername())).collect(Collectors.toList());
