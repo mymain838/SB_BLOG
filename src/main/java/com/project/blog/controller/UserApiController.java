@@ -30,21 +30,25 @@ public class UserApiController {
 
 
     @PostMapping("/auth/joinProc")
-    public ResponseDto<Integer> save(@RequestBody User user){
+    public ResponseDto<Integer> save(@RequestBody User user) {
         System.out.println("user Api Controoler save 호출됌");
         userService.회원가입(user);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
-    @PutMapping("/user")
-    public ResponseDto<String> update(@RequestBody User user){
-      String rs = userService.회원수정(user);
 
-      Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-      SecurityContext securityContext = SecurityContextHolder.getContext();
-      securityContext.setAuthentication(authentication);
+    @PutMapping("/user")
+    public ResponseDto<String> update(@RequestBody User user) {
+
+        String rs = userService.회원수정(user);
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        securityContext.setAuthentication(authentication);
         System.out.println(user.getId());
         System.out.println(user.getEmail());
         return new ResponseDto<String>(HttpStatus.OK.value(), rs);
+
+
     }
 //    @PostMapping("/api/user/login")
 //    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session){

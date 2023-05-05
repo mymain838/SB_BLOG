@@ -60,6 +60,9 @@ public class UserController {
     @GetMapping("/user/updateForm")
     public String updateForm() {
 
+
+
+
         return "user/updateForm";
     }
 
@@ -154,7 +157,7 @@ public class UserController {
                                      .oauth("kakao")
                                             .build();
         // 가입자 혹은 비가입자 체크 해서 처리
-        User originUser = userService.회원찾기(kakaoUser.getEmail());
+        User originUser = userService.회원찾기(kakaoUser.getUsername());
         if(originUser.getUsername() == null){
             System.out.println("기존 회원이 아니기에 자동 회원가입을 진행합니다.");
             userService.회원가입(kakaoUser);

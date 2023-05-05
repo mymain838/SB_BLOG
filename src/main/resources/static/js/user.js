@@ -42,7 +42,8 @@ let index = {
             id: $("#id").val(),
             username: $("#username").val(),
             password: $("#password").val(),
-            email: $("#email").val()
+            email: $("#email").val(),
+            oauth: $("#oauth").val()
         };
         console.log(data);
         //ajax호출 default가 비동기 호출
@@ -53,9 +54,15 @@ let index = {
             contentType: "application/json; charset=utf-8",
             dataType:"json"
         }).done(function (resp){
+            if(resp.data==="OK"){
+                alert("회원수정이 완료되었습니다");
+                location.href= "/";
+            }else{
+                alert(JSON.stringify(resp));
+            }
 
-            alert("회원수정이 완료되었습니다");
-            location.href= "/";
+
+
         }).fail(function (error){
             alert(JSON.stringify(error));
         });
