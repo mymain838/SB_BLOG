@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -38,9 +39,14 @@ public class SecurityConfig {
     //해당 password가 뭘로 해쉬가 되어 회원가입이 되었는지 알아야
     //같은 해쉬로 암호화해서 DB에 있는 해쉬랑 비교 할 수 있음.
 
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+    // 인증 매니저 빈등록 (AuthenticationConfiguration 의 getAuthenticationManager() 리턴 해줘야함
 
     @Bean
-    SecurityFilterChain fi(HttpSecurity http) throws  Exception{
+    SecurityFilterChain filterChain(HttpSecurity http) throws  Exception{
 
         http
                 .csrf().disable() // csrf 토큰 비활성화 (테스트시 걸어두는 게 좋음)

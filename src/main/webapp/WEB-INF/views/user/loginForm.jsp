@@ -18,6 +18,12 @@
             </label>
         </div>--%>
         <button id="btn-login" class="btn btn-primary"> 로그인 </button>
+        <%!
+            final String CLIENT_ID = "7b8954aeef8a543f6db2c9aadfa30d18";
+            final String REDIRECT_URI = "http://localhost:8000/auth/kakao/callback";
+        %>
+
+        <a href="https://kauth.kakao.com/oauth/authorize?client_id=<%=CLIENT_ID%>&redirect_uri=<%=REDIRECT_URI%>&response_type=code"><img height="35px" src="/image/kakao_login_button.png"/></a>
     </form>
 
 </div>

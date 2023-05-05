@@ -8,12 +8,13 @@
         <input class="form-control mr-sm-2" type="text" placeholder="Search" id="keyword" name="keyword">
         <button class="btn btn-success" type="submit">Search</button>
     </form>
-
+    ${principal.user.password}<p/>
+    ${principal.user.email}
     <c:forEach var="board" items="${boards.content}">
         <div class="card m-2">
             <div class="card-body">
                 <h4 class="card-title">${board.title}</h4>
-                <a href="#" class="btn btn-primary">상세보기</a>
+                <a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
             </div>
         </div>
     </c:forEach>
