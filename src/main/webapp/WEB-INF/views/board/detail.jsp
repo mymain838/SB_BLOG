@@ -29,8 +29,11 @@
     </div>
 
     <div class="card">
+
+        <input type="hidden" id="boardId" value="${board.id}"/>
+        <input type="hidden" id="Name" value="${principal.user.username}"/>
         <div>
-            <div class="card-body"><textarea class="form-control" rows="1"></textarea></div>
+            <div class="card-body"><textarea id="reply-content" class="form-control" rows="1"></textarea></div>
             <div class="card-footer d-flex align-items-center">
                 <div style="flex-grow: 2;">
                     <div class="d-flex justify-content-around">
@@ -54,11 +57,10 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end" style="flex-grow: 1; ">
-                    <button class="btn btn-primary">등록</button>
+                    <button id="btn-reply-save" class="btn btn-primary">등록</button>
                 </div>
+
             </div>
-
-
         </div>
     </div>
 </div>

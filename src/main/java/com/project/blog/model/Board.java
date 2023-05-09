@@ -37,6 +37,7 @@ public class Board {
     //자바는 오브젝트를 저장 할 수 있음.
 
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER) //mappedBy 연관관계의 주인이 아니다(난 FK가 아니에요) DB에 컬럼을 만들지 마세요.
+    @OrderBy("id desc ")
     @JsonIgnoreProperties({"board"})
     private List<Reply> replys;
 

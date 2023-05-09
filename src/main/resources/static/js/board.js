@@ -2,12 +2,15 @@ let index = {
     init: function () {
         $("#btn-save").on("click", () => {
             this.save();
-        }),
+        })
         $("#btn-delete").on("click", () => {
             this.delete();
-        }),
+        })
         $("#btn-update").on("click", () => {
             this.update();
+        })
+        $("#btn-reply-save").on("click", () => {
+            this.replySave();
         })
 
 
@@ -78,7 +81,33 @@ let index = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
+    },
+    replySave: function () {
+        let data = {
+            content: $("#reply-content").val(),
+            boardId: $("#boardId").val(),
+            userName: $("#Name").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: `/api/board/${data.boardId}/reply`,
+            data: JSON.stringify(data),
+            contentType: "application/json; charset = utf-8",
+            dataType: "json"
+
+        }).done(function (resp) {
+            if (resp.data === "OK") {
+                alert("글작성이 완료되었습니다.");
+                location.href = `/board/${data.boardId}`;
+            } else {
+                alert("실패");
+            }
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
     }
+
 
 }
 index.init();

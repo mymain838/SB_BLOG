@@ -1,8 +1,12 @@
 package com.project.blog.service;
 
+import com.project.blog.dto.ReplySaveReqDto;
 import com.project.blog.model.Board;
+import com.project.blog.model.Reply;
 import com.project.blog.model.User;
 import com.project.blog.repository.BoardRepository;
+import com.project.blog.repository.ReplyRepository;
+import com.project.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +21,10 @@ public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
-
+    @Autowired
+    private ReplyRepository replyRepository;
+    @Autowired
+    private UserRepository userRepository;
     @Transactional
     public String 글쓰기(Board board, User user) {
         board.setUser(user);
@@ -55,6 +62,25 @@ public class BoardService {
 
         return "OK";
 
+    }
+    @Transactional
+    public String 댓글쓰기(ReplySaveReqDto replySaveReqDto){
+        User user = userRepository.findByUsername(replySaveReqDto.getUserName()).orElseThrow(()->{
+            return new IllegalArgumentException("댓글 쓰기 실패: 유저 name을 찾을 수 없습니다.");
+        }); //영
+
+        Board board = boardRepository.findById(replySaveReqDto.getBoardId()).orElseThrow(()->{
+            return new IllegalArgumentException("댓글 쓰기 실패: 게시글id를 찾을 수 없습니다.");
+        }); //영속화 완료
+
+        Reply reply = Reply.builder()
+                .user(user)
+                .board(board)
+                .content(replySaveReqDto.getContent())
+                .build();
+        replyRepository.save(reply);
+
+        return "OK";
     }
 
 }

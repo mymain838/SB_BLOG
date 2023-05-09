@@ -46,10 +46,10 @@ public class BoardController {
         model.addAttribute("board", boardService.상세보기(id));
         return "board/detail";
     }
-    @GetMapping("/board/{oo}/updateForm")
-    public String updateForm(@PathVariable int oo, Model model){
+    @GetMapping("/board/{id}/updateForm")
+    public String updateForm(@PathVariable int id, Model model){
 
-        model.addAttribute("board", boardService.상세보기(oo));
+        model.addAttribute("board", boardService.상세보기(id));
         return "board/updateForm";
     }
 }
