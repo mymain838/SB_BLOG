@@ -1,3 +1,4 @@
+
 let index = {
     init: function () {
         $("#btn-save").on("click", () => {
@@ -86,8 +87,20 @@ let index = {
         let data = {
             content: $("#reply-content").val(),
             boardId: $("#boardId").val(),
-            userName: $("#Name").val()
+            userId: $("#userId").val(),
+            color: ""
         };
+
+        if($('#r1').is(':checked')){
+            data.color = "danger";
+        }else if($('#r2').is(':checked')) {
+            data.color = "info";
+        }else if($('#r3').is(':checked')) {
+            data.color = "warning";
+        }else if($('#r4').is(':checked')) {
+            data.color = "success";
+        }
+
 
         $.ajax({
             type: "POST",
@@ -98,7 +111,7 @@ let index = {
 
         }).done(function (resp) {
             if (resp.data === "OK") {
-                alert("글작성이 완료되었습니다.");
+                alert("댓글작성이 완료되었습니다.");
                 location.href = `/board/${data.boardId}`;
             } else {
                 alert("실패");

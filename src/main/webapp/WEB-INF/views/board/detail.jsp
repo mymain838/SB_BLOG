@@ -31,28 +31,28 @@
     <div class="card">
 
         <input type="hidden" id="boardId" value="${board.id}"/>
-        <input type="hidden" id="Name" value="${principal.user.username}"/>
+        <input type="hidden" id="userId" value="${principal.user.id}"/>
         <div>
-            <div class="card-body"><textarea id="reply-content" class="form-control" rows="1"></textarea></div>
+            <div class="card-body"><textarea id="reply-content" class="form-control summernote" rows="1"></textarea></div>
             <div class="card-footer d-flex align-items-center">
                 <div style="flex-grow: 2;">
                     <div class="d-flex justify-content-around">
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input">
-                            <label class="custom-control-label text-danger" for="jb-radio-1">빨강</label>
+                            <input type="radio" name="r1" id="r1" class="custom-control-input">
+                            <label class="custom-control-label text-danger" for="r1">빨강</label>
                         </div>
                         <div class="custom-control custom-radio ">
-                            <input type="radio" name="jb-radio" id="jb-radio-2" class="custom-control-input">
-                            <label class="custom-control-label text-info" for="jb-radio-2">파랑</label>
+                            <input type="radio" name="r2" id="r2" class="custom-control-input">
+                            <label class="custom-control-label text-info" for="r2">파랑</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" name="jb-radio" id="jb-radio-3" class="custom-control-input">
-                            <label class="custom-control-label text-primary" for="jb-radio-3">노랑</label>
+                            <input type="radio" name="r3" id="r3" class="custom-control-input">
+                            <label class="custom-control-label text-warning" for="r3">노랑</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" name="jb-radio" id="jb-radio-4" class="custom-control-input">
-                            <label class="custom-control-label text-success" for="jb-radio-4">초록</label>
+                            <input type="radio" name="r4" id="r4" class="custom-control-input">
+                            <label class="custom-control-label text-success" for="r4">초록</label>
                         </div>
                     </div>
                 </div>
@@ -69,11 +69,11 @@
     <div>
         <ul id="reply--box" class="list-group">
             <c:forEach var="reply" items="${board.replys}">
-                <li id="reply--1" class="list-group-item list-group-item-warning d-flex justify-content-between">
+                <li id="reply--${reply.id}" class="list-group-item list-group-item-${reply.color} d-flex justify-content-between">
                     <div>${reply.content}</div>
                     <div class="d-flex">
                         <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
-                        <button class="badge badge-danger">삭제</button>
+                        <button class="badge badge-info "style="height: 20px">삭제</button>
                     </div>
 
 
@@ -86,6 +86,13 @@
 </div>
 
 </div>
+
+<script>
+    $('.summernote').summernote({
+        placeholder: '댓글을 입력해주세요 ',
+
+    });
+</script>
 <script src="/js/board.js"></script>
 <%@include file="../layout/footer.jsp" %>
 

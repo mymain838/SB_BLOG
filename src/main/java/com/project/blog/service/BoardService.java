@@ -65,20 +65,21 @@ public class BoardService {
     }
     @Transactional
     public String 댓글쓰기(ReplySaveReqDto replySaveReqDto){
-        User user = userRepository.findByUsername(replySaveReqDto.getUserName()).orElseThrow(()->{
-            return new IllegalArgumentException("댓글 쓰기 실패: 유저 name을 찾을 수 없습니다.");
-        }); //영
-
-        Board board = boardRepository.findById(replySaveReqDto.getBoardId()).orElseThrow(()->{
-            return new IllegalArgumentException("댓글 쓰기 실패: 게시글id를 찾을 수 없습니다.");
-        }); //영속화 완료
-
-        Reply reply = Reply.builder()
-                .user(user)
-                .board(board)
-                .content(replySaveReqDto.getContent())
-                .build();
-        replyRepository.save(reply);
+//        User user = userRepository.findByUsername(replySaveReqDto.getUserName()).orElseThrow(()->{
+//            return new IllegalArgumentException("댓글 쓰기 실패: 유저 name을 찾을 수 없습니다.");
+//        }); //영
+//
+//        Board board = boardRepository.findById(replySaveReqDto.getBoardId()).orElseThrow(()->{
+//            return new IllegalArgumentException("댓글 쓰기 실패: 게시글id를 찾을 수 없습니다.");
+//        }); //영속화 완료
+//
+//        Reply reply = Reply.builder()
+//                .user(user)
+//                .board(board)
+//                .content(replySaveReqDto.getContent())
+//                .build();
+        System.out.println(replySaveReqDto.toString());
+        replyRepository.mSave(replySaveReqDto.getContent(), replySaveReqDto.getUserId(), replySaveReqDto.getBoardId(), replySaveReqDto.getColor());
 
         return "OK";
     }

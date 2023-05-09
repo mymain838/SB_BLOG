@@ -18,8 +18,8 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(nullable = false, length = 200)
+    @Lob
+    @Column(nullable = false)
     private String content;
 
     @ManyToOne
@@ -32,6 +32,9 @@ public class Reply {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    @Column(length = 50)
+    private String color;
 
 
 }

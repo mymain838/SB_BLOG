@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ReplySaveReqDto {
     private int boardId;
-    private String userName;
+    private int userId;
     private String content;
+    private String color;
 }
