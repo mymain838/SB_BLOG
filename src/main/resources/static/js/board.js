@@ -14,7 +14,6 @@ let index = {
             this.replySave();
         })
 
-
     },
     save: function () {
         let data = {
@@ -116,6 +115,22 @@ let index = {
             } else {
                 alert("실패");
             }
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        })
+    },
+    replyDelete: function (boardId, replyId) {
+
+        $.ajax({
+            type: "DELETE",
+            url: `/api/board/${boardId}/reply/${replyId}`,
+            dataType: "json"
+
+        }).done(function (resp) {
+            alert(resp.data)
+            location.href = `/board/${boardId}` ;
+
+
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })

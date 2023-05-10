@@ -28,10 +28,13 @@ let index = {
             contentType: "application/json; charset=utf-8",
             dataType:"json"
         }).done(function (resp){
+            if(resp.status == 500){
+                alert("회원가입 실패 ");
+            }else{
+                alert("회원가입이 완료되었습니다.");
+                location.href= "/";
+            }
 
-            alert("회원가입이 완료되었습니다." + resp.data);
-           console.log(resp);
-            location.href= "/";
         }).fail(function (error){
             alert(JSON.stringify(error));
         });

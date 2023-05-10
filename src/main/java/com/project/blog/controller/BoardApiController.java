@@ -42,4 +42,10 @@ public class BoardApiController {
         return new ResponseDto<String>(HttpStatus.OK.value(), rs);
 
     }
+    @DeleteMapping("/api/board/{boardId}/reply/{replyId}")
+    public ResponseDto<String> replyDelete(@PathVariable int replyId){
+        String rs = boardService.댓글삭제(replyId);
+        return new ResponseDto<String>(HttpStatus.OK.value(), rs);
+
+    }
 }

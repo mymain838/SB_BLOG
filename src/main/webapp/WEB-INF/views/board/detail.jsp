@@ -33,7 +33,8 @@
         <input type="hidden" id="boardId" value="${board.id}"/>
         <input type="hidden" id="userId" value="${principal.user.id}"/>
         <div>
-            <div class="card-body"><textarea id="reply-content" class="form-control summernote" rows="1"></textarea></div>
+            <div class="card-body"><textarea id="reply-content" class="form-control summernote" rows="1"></textarea>
+            </div>
             <div class="card-footer d-flex align-items-center">
                 <div style="flex-grow: 2;">
                     <div class="d-flex justify-content-around">
@@ -69,18 +70,23 @@
     <div>
         <ul id="reply--box" class="list-group">
             <c:forEach var="reply" items="${board.replys}">
-                <li id="reply--${reply.id}" class="list-group-item list-group-item-${reply.color} d-flex justify-content-between">
+                <li id="reply-${reply.id}"
+                    class="list-group-item list-group-item-${reply.color} d-flex justify-content-between">
                     <div>${reply.content}</div>
                     <div class="d-flex">
                         <div class="font-italic">작성자 : ${reply.user.username} &nbsp;</div>
-                        <button class="badge badge-info "style="height: 20px">삭제</button>
+                        <c:if test="${principal.user.id eq reply.user.id}">
+                            <button class="badge badge-info" onclick="index.replyDelete(${board.id}, ${reply.id})"
+                                    style="height: 20px">삭제
+                            </button>
+                        </c:if>
+
                     </div>
 
 
                 </li>
             </c:forEach>
 
-            <li class="list-group-item list-group-item-light">Light item</li>
         </ul>
     </div>
 </div>

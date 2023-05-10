@@ -83,5 +83,10 @@ public class BoardService {
 
         return "OK";
     }
+    @Transactional
+    public String 댓글삭제(int replyId){
+       replyRepository.deleteById(replyId);
+        return "OK";
+    }
 
 }
